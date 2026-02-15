@@ -1,0 +1,129 @@
+
+<html>
+<head>
+<title>Yesh Gifts - Order</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+}
+
+.container{
+max-width:500px;
+margin:40px auto;
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+h2{text-align:center;}
+
+input,select{
+width:100%;
+padding:10px;
+margin:10px 0;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+color:white;
+font-size:15px;
+cursor:pointer;
+}
+
+.phonepe{background:#2D3E8B;}
+.whatsapp{background:#25D366;}
+
+.preview{
+text-align:center;
+margin-top:10px;
+}
+
+.preview img{
+width:150px;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Place Your Order 🎁</h2>
+
+<p><b>Mobile:</b> <span id="user"></span></p>
+
+<select id="product">
+<option value="299">Good Morning Mug - ₹299</option>
+<option value="349">Couple Mug - ₹349</option>
+<option value="399">Custom Photo Mug - ₹399</option>
+</select>
+
+<input type="text" placeholder="Delivery Address">
+
+<h3>Upload Image</h3>
+<input type="file" onchange="previewImage(event)">
+
+<div class="preview">
+<img id="imgPreview">
+</div>
+
+<a id="payLink">
+<button class="phonepe">Pay with PhonePe</button>
+</a>
+
+<button class="whatsapp" onclick="sendOrder()">Send Order on WhatsApp</button>
+
+<p style="text-align:center;font-size:13px;">
+After payment send screenshot on WhatsApp.
+</p>
+
+</div>
+
+<script>
+
+document.getElementById("user").innerText =
+localStorage.getItem("user");
+
+var productSelect = document.getElementById("product");
+var payLink = document.getElementById("payLink");
+
+function updatePayment(){
+var amount = productSelect.value;
+payLink.href =
+"upi://pay?pa=7892483787@ibl&pn=Yesh%20Gifts&am="+amount+"&cu=INR";
+}
+
+productSelect.addEventListener("change",updatePayment);
+updatePayment();
+
+function previewImage(event){
+var reader=new FileReader();
+reader.onload=function(){
+document.getElementById("imgPreview").src=reader.result;
+}
+reader.readAsDataURL(event.target.files[0]);
+}
+
+function sendOrder(){
+var number=localStorage.getItem("user");
+var product=productSelect.options[productSelect.selectedIndex].text;
+var url="https://wa.me/917892483787?text=New%20Order%0AMobile:"+number+"%0AProduct:"+product;
+window.open(url,"_blank");
+}
+
+</script>
+
+</body>
+</html>
