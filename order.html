@@ -108,13 +108,6 @@ payLink.href =
 productSelect.addEventListener("change",updatePayment);
 updatePayment();
 
-function previewImage(event){
-var reader=new FileReader();
-reader.onload=function(){
-document.getElementById("imgPreview").src=reader.result;
-}
-reader.readAsDataURL(event.target.files[0]);
-}
 
 function sendOrder(){
 var number = localStorage.getItem("user");
