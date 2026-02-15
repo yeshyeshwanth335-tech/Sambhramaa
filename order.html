@@ -117,11 +117,18 @@ reader.readAsDataURL(event.target.files[0]);
 }
 
 function sendOrder(){
-var number=localStorage.getItem("user");
-var product=productSelect.options[productSelect.selectedIndex].text;
-var url="https://wa.me/917892483787?text=New%20Order%0AMobile:"+number+"%0AProduct:"+product;
+var number = localStorage.getItem("user");
+var product = document.getElementById("product").options[
+document.getElementById("product").selectedIndex].text;
+
+var url = "https://wa.me/917892483787?text=New Order%0A" +
+"Mobile: " + number +
+"%0AProduct: " + product +
+"%0APlease send your image here.";
+
 window.open(url,"_blank");
 }
+
 
 </script>
 
