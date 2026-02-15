@@ -1,193 +1,74 @@
-
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yesh Gifts | Custom Mug Orders</title>
-
+<title>Sambhrama - Login</title>
 <style>
 body{
     margin:0;
-    font-family:Arial, sans-serif;
-    background:#f5f6fa;
-    text-align:center;
+    font-family:Arial;
+    background:linear-gradient(135deg,#6c5ce7,#00cec9);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
 }
 
-header{
-    background:linear-gradient(135deg,#00b894,#0984e3);
-    color:white;
-    padding:50px 20px;
-}
-
-.section{
-    padding:40px 20px;
-}
-
-.form-box{
+.login-box{
     background:white;
-    max-width:600px;
-    margin:auto;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    padding:40px;
+    border-radius:20px;
+    width:300px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
-input, textarea, select{
+input{
     width:100%;
-    padding:10px;
-    margin:10px 0;
-    border-radius:8px;
+    padding:12px;
+    margin:15px 0;
+    border-radius:10px;
     border:1px solid #ccc;
 }
 
 button{
-    background:#00b894;
-    color:white;
-    border:none;
-    padding:12px;
     width:100%;
-    border-radius:25px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#6c5ce7;
+    color:white;
     font-size:16px;
     cursor:pointer;
-    margin-top:10px;
 }
 
 button:hover{
-    background:#0984e3;
-}
-
-.preview-wrapper{
-    perspective:1000px;
-    margin-top:20px;
-}
-
-.mug{
-    width:220px;
-    height:220px;
-    margin:auto;
-    border-radius:50%;
-    background:white;
-    overflow:hidden;
-    transform-style:preserve-3d;
-    animation:rotateMug 6s linear infinite;
-    box-shadow:0 5px 20px rgba(0,0,0,0.2);
-}
-
-.mug img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-@keyframes rotateMug{
-    0%{transform:rotateY(0deg);}
-    100%{transform:rotateY(360deg);}
-}
-
-.payment-buttons button{
-    background:#6c5ce7;
-}
-
-.payment-buttons button:hover{
-    background:#341f97;
-}
-
-footer{
-    background:#2d3436;
-    color:white;
-    padding:20px;
-    margin-top:40px;
+    background:#4834d4;
 }
 </style>
-
-<script>
-function previewImage(event){
-    var reader = new FileReader();
-    reader.onload = function(){
-        document.getElementById("previewImg").src = reader.result;
-    }
-    reader.readAsDataURL(event.target.files[0]);
-}
-
-function sendOrder(){
-    var name = document.getElementById("name").value;
-    var phone = document.getElementById("phone").value;
-    var address = document.getElementById("address").value;
-    var design = document.getElementById("design").value;
-
-    var url = "https://wa.me/917760932963?text="
-    + "New Mug Order%0A"
-    + "Name: " + name + "%0A"
-    + "Phone: " + phone + "%0A"
-    + "Design: " + design + "%0A"
-    + "Address: " + address;
-
-    window.open(url, "_blank");
-}
-</script>
-
 </head>
 
 <body>
 
-<header>
-<h1>🎁 Yesh Gifts</h1>
-<p>Upload Photo & Order Your Customized Mug ☕</p>
-</header>
+<div class="login-box">
+<h2>Welcome to Sambhrama💝</h2>
+<p>Enter Mobile Number</p>
 
-<div class="section">
+<input type="text" id="mobile" placeholder="Enter 10 digit number">
 
-<div class="form-box">
-
-<input type="text" id="name" placeholder="Your Name" required>
-<input type="tel" id="phone" placeholder="Your Phone Number" required>
-
-<select id="design">
-<option>Good Morning Mug - ₹299</option>
-<option>Couple Mug - ₹349</option>
-<option>Birthday Mug - ₹399</option>
-<option>Best Friend Mug - ₹299</option>
-</select>
-
-<textarea id="address" placeholder="Delivery Address" required></textarea>
-
-<label>Upload Your Image</label>
-<input type="file" accept="image/*" onchange="previewImage(event)">
-
-<div class="preview-wrapper">
-<h3>360° Mug Preview</h3>
-<div class="mug">
-<img id="previewImg" src="https://via.placeholder.com/300" alt="Preview">
-</div>
+<button onclick="login()">Continue</button>
 </div>
 
-<button onclick="sendOrder()">Send Order on WhatsApp</button>
-
-<div class="payment-buttons">
-
-
-<a href="upi://pay?pa=7892483787@ybl&pn=Yesh%20Gifts&am=299&cu=INR">
-    <button type="button">Pay with PhonePe</button>
-</a> 
-<a href="upi://pay?pa=7892483787@ybl&pn=Yesh%20Gifts&am=&cu=INR">
-    <button type="button">Pay with PhonePe</button>
-</a> 
-
-
-
-</div>
-
-<p>After payment, send screenshot on WhatsApp.</p>
-
-</div>
-
-</div>
-
-<footer>
-<p>📍 Bengaluru</p>
-<p>📞 7760932963</p>
-<p>© 2026 Yesh Gifts</p>
-</footer>
+<script>
+function login(){
+    var number = document.getElementById("mobile").value;
+    if(number.length == 10){
+        localStorage.setItem("customerNumber", number);
+        window.location.href = "order.html";
+    }else{
+        alert("Enter valid 10 digit number");
+    }
+}
+</script>
 
 </body>
 </html>
