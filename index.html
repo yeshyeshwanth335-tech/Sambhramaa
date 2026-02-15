@@ -1,0 +1,71 @@
+
+<html>
+<head>
+<title>Yesh Gifts - Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#667eea,#764ba2);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+background:white;
+padding:40px;
+border-radius:20px;
+width:300px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:15px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:20px;
+border:none;
+border-radius:10px;
+background:#667eea;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Yesh Gifts 💝</h2>
+<p>Enter Mobile Number</p>
+<input type="text" id="mobile" placeholder="10 digit number">
+<button onclick="goNext()">Continue</button>
+</div>
+
+<script>
+function goNext(){
+var num = document.getElementById("mobile").value;
+if(num.length==10){
+localStorage.setItem("user",num);
+window.location.href="order.html";
+}else{
+alert("Enter valid number");
+}
+}
+</script>
+
+</body>
+</html>
